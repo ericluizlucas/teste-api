@@ -10,8 +10,8 @@ namespace testeapi.Controllers
     public class ProductController : ControllerBase
     {
         public ProductController(){
-
         }
+
         [HttpGet]
         public async Task<ActionResult<List<Product>>> Get([FromServices] DataContext context)
         {
@@ -72,6 +72,10 @@ namespace testeapi.Controllers
             {
                 if (ModelState.IsValid)
                 {
+                    model.Category = await context.Category
+                    .AsNoTracking()
+                    .FirstOrDefaultAsync(x => x.Id == model.CategoryId);
+
                     context.Product.Add(model);
                     await context.SaveChangesAsync();
                     return model;
