@@ -23,7 +23,7 @@ namespace testeapi.Controllers
             }
             catch (System.Exception ex)
             {
-                return BadRequest(ex.Message);
+                return ResponseHelper.Error(ex.Message, System.Net.HttpStatusCode.InternalServerError);
             }
         }
 
@@ -45,7 +45,7 @@ namespace testeapi.Controllers
             }
             catch (System.Exception ex)
             {
-                return BadRequest(ex.Message);
+                return ResponseHelper.Error(ex.Message, System.Net.HttpStatusCode.InternalServerError);
             }
         }
     }
